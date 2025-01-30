@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Landing Page</title>
+    
+    <style>
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            
+        }
+        
+        /* Navbar Styles */
+        nav {
+            background-color: #122315;
+            padding: 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        nav ul li a:hover {
+            color: #f1c40f;
+        }
+
+        /* Hero Section */
+        .hero {
+        
+            text-align: center;
+            color: white;
+            padding: 100px 0;
+            padding-top: 35px;
+        }
+        .hero h1 {
+         
+            font-size: 48px;
+            margin-bottom: 20px;
+            padding-bottom: 50px;
+        }
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        /* Feature Section */
+        .features {
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 60px 0;
+            background-color: #122315;
+        }
+        .features .feature {
+            text-align: center;
+            width: 30%;
+        }
+        .features .feature h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        .features .feature p {
+            font-size: 16px;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background-color:#faedcd;
+            
+            text-align: center;
+            padding: 10px 0;
+        }
+        .benefits h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+        .benefits p {
+            font-size: 18px;
+            width: 70%;
+            margin: 0 auto;
+        }
+
+        /* CTA Section */
+        .cta {
+            background-color: #122315;
+            text-align: center;
+            color: white;
+            padding: 50px 0;
+        }
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .member{
+           display: inline-block;
+           margin-left: 200px;
+           
+        }
+            #comb{
+                 background-size:cover; height:620px;
+            }
+
+
+
+
+            .btn {
+                font-size: 18px;
+                margin: 20px;
+                padding: 15px 40px;
+                border: none;
+                outline: none;
+                color: black;
+                cursor: pointer;
+                position: relative;
+                z-index: 0;
+                border-radius: 12px;
+              }
+              .btn::after {
+                content: "";
+                z-index: -1;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-color: #DAEDBD;
+                left: 0;
+                top: 0;
+                border-radius: 10px;
+              }
+              /* glow */
+              .btn::before {
+                content: "";
+                background: linear-gradient(
+                  45deg,
+                  #FF0000, #FF7300, #FFFB00, #48FF00,
+                  #00FFD5, #002BFF, #FF00C8, #FF0000
+                );
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                background-size: 600%;
+                z-index: -1;
+                width: calc(100% + 4px);
+                height:  calc(100% + 4px);
+                filter: blur(8px);
+                animation: glowing 20s linear infinite;
+                transition: opacity .3s ease-in-out;
+                border-radius: 10px;
+                opacity: 0;
+              }
+              
+              @keyframes glowing {
+                0% {background-position: 0 0;}
+                50% {background-position: 400% 0;}
+                100% {background-position: 0 0;}
+              }
+              
+              /* hover */
+              .btn:hover::before {
+                opacity: 1;
+              }
+              
+              .btn:active:after {
+                background: transparent;
+              }
+              
+              .btn:active {
+                color: #000;
+                font-weight: bold;
+              }
+              .container {
+                background-image: url('{{url_for('static',filename='images/sky-bg.avif')}}');
+    background-size: cover;
+    background-position: center; /* Light background for contrast */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 15px; /* Rounded corners for a modern look */
+    padding: 30px; /* Spacing around the content */
+    max-width: 800px; /* Restrict width for better readability */
+    margin: 30px auto; /* Center horizontally with some vertical spacing */
+}
+
+.container h1 {
+    text-align: center; /* Center-align heading */
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #122315; /* Use theme color */
+}
+
+.container form {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    gap: 15px; /* Add spacing between form elements */
+}
+
+.container label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333; /* Neutral text color */
+    margin-bottom: 5px;
+}
+
+.container input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.container input:focus {
+    border-color: #122315; /* Highlight input on focus */
+    box-shadow: 0 0 5px rgba(18, 35, 21, 0.2);
+}
+
+.container button {
+    background-color: #122315;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.container button:hover {
+    background-color: #1d472b;
+    transform: scale(1.05);
+}
+
+.container button:active {
+    background-color: #0d1e11;
+    transform: scale(0.95);
+}
+
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+           
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <section id="comb" style="background-image: url('{{url_for('static',filename='images/image2.jpg')}}');" >
+        
+    <nav>
+        <ul>
+            <li><img src="" alt=""></li>
+            <li><a href="#home">Home Page</a></li>
+            <li><a href="#features">Risk Assesment</a></li>
+            <li><a href="#benefits">Health Tips</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><button style="background-color: #DAEDBD; height: 30px; font-size: 20px; " onclick="location.href='#benefits'">Assess</button></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Heart-Risk!</h1>
+        <p>"Your heart is your life's rhythm—let's keep it beating strong and risk-free."</p>
+        
+    </section>
+</section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="feature">
+            <h3>Personalized Heart Risk Assessment</h3>
+            
+        </div>
+        <div class="feature">
+            <h3>AI-Powered Heart Risk Prediction</h3>
+            
+        </div>
+        <div class="feature">
+            <h3>ML-Driven Health Guidance</h3>
+            
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits">
+        <h2>Why Prioritize Your Heart?</h2>
+        <p>Empowered by advanced machine learning, we provide personalized insights that revolutionize the way you care for your heart health.</p>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="cta" class="cta">
+        <h2>FIND OUT ....</h2>
+       
+        <div class="container">
+            <h1>Heart Disease Prediction</h1>
+            <form action="/calc" method="POST">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+                
+                <label for="sex">Sex (1=Male, 0=Female):</label>
+                <input type="number" id="sex" name="sex" required>
+                
+                <label for="cp">Chest Pain Type (0-3):</label>
+                <input type="number" id="cp" name="cp" required>
+                
+                <label for="trestbps">Resting Blood Pressure:</label>
+                <input type="number" id="trestbps" name="trestbps" required>
+                
+                <label for="chol">Cholesterol:</label>
+                <input type="number" id="chol" name="chol" required>
+                
+                <label for="fbs">Fasting Blood Sugar (1=True, 0=False):</label>
+                <input type="number" id="fbs" name="fbs" required>
+                
+                <label for="restecg">Resting ECG Results (0-2):</label>
+                <input type="number" id="restecg" name="restecg" required>
+                
+                <label for="thalach">Max Heart Rate Achieved:</label>
+                <input type="number" id="thalach" name="thalach" required>
+                
+                <label for="exang">Exercise Induced Angina (1=True, 0=False):</label>
+                <input type="number" id="exang" name="exang" required>
+                
+                <label for="oldpeak">ST Depression:</label>
+                <input type="number" id="oldpeak" name="oldpeak" step="0.1" required>
+                
+                <label for="slope">Slope of ST Segment (0-2):</label>
+                <input type="number" id="slope" name="slope" required>
+                
+                <label for="ca">Number of Major Vessels (0-4):</label>
+                <input type="number" id="ca" name="ca" required>
+                
+                <label for="thal">Thalassemia (0, 1, 2, 3):</label>
+                <input type="number" id="thal" name="thal" required>
+                
+                <button type="submit" class="btn" >Predict</button>
+            </form>
+            {% if result %}
+            <div class="result">
+                <h2>{{ result }}</h2>
+            </div>
+        {% endif %}
+        </div>
+
+
+        <a href="{{ url_for('info') }}" style="color: white; text-decoration: none; font-size: medium;">click for table info...</a>
+       
+    </section>
+
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <h2 style="text-align: center;">Meet Our Team</h2>
+        <div class="members">
+            <div class="member">
+                <h3>Vasu Goswami</h3>
+                <p></p>
+            </div>
+            <div class="member">
+                <h3>Vashishta Nagi</h3>
+                <p></p>
+            </div>
+            <div class="member">
+                <h3>Vashika Tyagi</h3>
+                <p></p>
+            </div>
+            <div class="member">
+                <h3>William Panwar</h3>
+                <p></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer style="text-align: center;">
+        <p>&copy;❤️ Keep your heart happy and healthy! Stay connected with us—because every beat matters. 💓</p>
+    </footer>
+</body>
+</html>
